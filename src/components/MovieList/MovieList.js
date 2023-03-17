@@ -17,12 +17,13 @@ const MovieList = () => {
   ):(<div className="movies-error"><h3>{movies.Error}</h3></div>)
 
   const renderShows = shows.Response === "True" ? (
-    shows.Search.map((show,index)=>{
+    shows.Search.map((movie,index)=>{
       return(
-      <MovieCard key={index} data={show}/>
+      <MovieCard key={index} data={movie}/>
       )
     })
-  ):(<div className="movies-error"><h3>{movies.Error}</h3></div>)
+  ):(<div className="shows-error"><h3>{shows.Error}</h3></div>)
+
   return (
     <div className="movie-wrapper">
       <div className="movie-list">
