@@ -1,20 +1,53 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import MovieApi from '../../common/api/MovieApi'
+import { APIKey } from '../../common/api/MovieApiKey'
+
+export const fetchAsyncMovies = createAsyncThunk('movies/fetchAsyncMovies',
+    async () => {
+        const movieText = "Harry"
+        const response = await MovieApi.get(`?apiKey=${APIKey}&s=${movieText}&type=movie`).catch((err) => console.log("EROOR", err))
+        return (response.data);
+    })
+
+export const fetchAsyncShows = createAsyncThunk('movies/fetchAsyncShows',
+    async () => {
+        const SeriesText = "Friends"
+        const response = await MovieApi.get(`?apiKey=${APIKey}&s=${SeriesText}&type=series`).catch((err) => console.log("EROOR", err))
+        return (response.data);
+    })
+
+export const fetchAsyncMovieOrShowDetail = createAsyncThunk('movies/fetchAsyncShows',
+    async (id) => {
+        const response = await MovieApi.get(`?apiKey=${APIKey}&i=${id}&Plot=full`).catch((err) => console.log("EROOR", err))
+        return (response.data);
+    })
 
 const initialState = {
-    movies:{}
+    movies: {},
+    shows: {},
+    selectedMovieOrShow : {},
 }
 
 const movieSlice = createSlice({
-    name:"movies",
+    name: "movies",
     initialState,
-    reducers:{
-        addMovies:(state , {payload}) => {
+    reducers: {
+        addMovies: (state, { payload }) => {
             state.movies = payload;
         }
     },
-    extraReducers:{}
+    extraReducers: {
+        [fetchAsyncMovies.pending]: () => { console.log("pending") },
+        [fetchAsyncMovies.fulfilled]: (state, { payload }) => { console.log("FETCHED SUCCESSFULL"); return { ...state, movies: payload } },
+        [fetchAsyncShows.fulfilled]: (state, { payload }) => { console.log("FETCHED SUCCESSFULL"); return { ...state, shows: payload } },
+        [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => { console.log("FETCHED SUCCESSFULL"); return { ...state, selectedMovieOrShow: payload } },
+        [fetchAsyncMovies.rejected]: () => { console.log("REJECTED") }
+
+    }
 })
 
-export const {addMovies} = movieSlice.actions;
+export const { addMovies } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies
+export const getAllShows = (state) => state.movies.shows
+export const getSelectedMovieOrShow = (state) => state.movies.selectedMovieOrShow
 export default movieSlice.reducer;
