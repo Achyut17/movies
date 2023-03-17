@@ -1,1 +1,1 @@
-{"version":3,"sources":["MovieList.scss","MovieList.css","../../common/colors.scss"],"names":[],"mappings":"AAEA;;EAEI,gBAAA;ACDJ;ADEI;;EACI,cEHQ;EFIR,mBAAA;EACA,gBAAA;ACCR;;ADGA;EACI,aAAA;EACA,4DAAA;EACA,cAAA;ACAJ","file":"MovieList.css"}
+{"version":3,"sources":["MovieList.scss","MovieList.css","../../common/colors.scss"],"names":[],"mappings":"AAEA;;EAEI,iBAAA;ACDJ;ADEI;;EACI,cEHQ;EFIR,mBAAA;EACA,gBAAA;ACCR","file":"MovieList.css"}
