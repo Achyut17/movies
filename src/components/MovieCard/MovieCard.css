@@ -1,0 +1,25 @@
+.card-item {
+  background: #1a242f;
+  cursor: pointer;
+}
+
+.card-top {
+  height: 300px;
+}
+.card-top img {
+  height: 100%;
+  width: 100%;
+}
+
+.card-info {
+  color: #FFFFFF;
+}
+.card-info h4 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.card-bottom {
+  padding: 20px;
+}/*# sourceMappingURL=MovieCard.css.map */
